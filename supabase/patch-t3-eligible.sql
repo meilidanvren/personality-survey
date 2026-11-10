@@ -29,7 +29,7 @@ begin
   from survey_responses
   where code = p_code and stage = 'test1';
 
-  if v_eligible = 'false' then
+  if v_eligible is distinct from 'true' then
     return jsonb_build_object('ok', false, 'reason', 'not_eligible');
   end if;
 
@@ -82,7 +82,7 @@ begin
   from survey_responses
   where code = p_code and stage = 'test1';
 
-  if v_eligible = 'false' then
+  if v_eligible is distinct from 'true' then
     return jsonb_build_object('ok', false, 'reason', 'not_eligible');
   end if;
 

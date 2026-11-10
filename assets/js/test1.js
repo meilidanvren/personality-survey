@@ -120,7 +120,7 @@ function renderSurvey() {
       state.answers = answers;
       state.timings.surveyFinishedAt = nowISO();
       scoreAndAssign();
-      if (state.eligible === false) {
+      if (!state.group) {
         state.timings.surveyFinishedAt = nowISO();
         save();
         finishTest();
@@ -308,7 +308,7 @@ function buildRecord() {
     finishedAt: state.finishedAt || nowISO(),
     group: state.group,
     arm: state.arm || null,
-    eligible: state.eligible === null || state.eligible === undefined ? null : state.eligible,
+    eligible: Boolean(state.group),
     profile: state.profile || null,
     big5: state.big5 || null,
     groupDims: state.groupDims || null,
