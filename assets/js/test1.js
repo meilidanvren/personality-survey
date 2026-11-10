@@ -58,6 +58,14 @@ let state = Object.assign(makeState(), progress.load(KEY) || {});
 const save = () => progress.save(KEY, state);
 
 function render() {
+  const oldVideo = app.querySelector('#video');
+  if (oldVideo) {
+    try {
+      oldVideo.pause();
+      oldVideo.removeAttribute('src');
+      oldVideo.load();
+    } catch (_) { /* 忽略 */ }
+  }
   window.scrollTo(0, 0);
   switch (state.step) {
     case 'survey': return renderSurvey();
