@@ -33,7 +33,7 @@ export const CONFIG = {
   storage: {
     // 'local'：数据存在被试浏览器里，只适合本地测试 / 当面施测
     // 'supabase'：正式收数据用这个，可跨设备、数据统一留存
-    driver: 'local',
+    driver: 'supabase',
     supabase: {
       url: 'https://rsitzpkuzwpxjndflhqd.supabase.co',
       anonKey: 'sb_publishable_kMr9TA6vaYrbYxsaAEgT1A_7zKYaK1V',
