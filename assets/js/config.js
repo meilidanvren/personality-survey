@@ -27,7 +27,7 @@ export const CONFIG = {
     // 一测完成后多少天才能进入二测。
     // 正式值 7；只在本地模式测试时可临时改 0（Supabase 模式的等待由数据库判定，改这里无效）。
     // 改这里的同时必须改 supabase/schema.sql 里的 interval '7 days'
-    test2DelayDays: 7,
+    test2DelayDays: 0,
   },
 
   storage: {
