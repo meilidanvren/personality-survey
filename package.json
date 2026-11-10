@@ -1,0 +1,11 @@
+{
+  "name": "personality-survey",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "两次制问卷调查静态站点（GitHub Pages）",
+  "scripts": {
+    "test": "node --test tests/logic.test.mjs",
+    "serve": "python -m http.server 8000"
+  }
+}

@@ -1,0 +1,10 @@
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+
+# 数据备份仓库（嵌套的独立 git 仓库，不随站点发布）
+data-repo/
+
+# 临时预览页
+_preview_videos.html

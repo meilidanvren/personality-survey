@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>问卷调查</title>
+<link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <span class="brand">问卷调查</span>
+  <span class="topbar-tag">入口</span>
+</header>
+
+<main class="page">
+  <section class="card hero">
+    <p class="eyebrow">学术研究 · 匿名作答</p>
+    <h1 id="title">人格特质与信息判断调查</h1>
+    <p class="lead" id="intro">本调查分为两次进行。</p>
+    <ul class="facts">
+      <li><b>一测</b><span>几组问卷 → 观看视频 → 再填一份 → 生成专属编号</span></li>
+      <li><b>二测</b><span id="test2-fact">凭一测编号进入 → 完成后续问卷</span></li>
+    </ul>
+  </section>
+
+  <div class="choice-grid">
+    <a class="choice" href="./test1.html">
+      <span class="choice-tag">第一次参与</span>
+      <h2>一测</h2>
+      <p>完成几组问卷、观看一段短视频并继续作答后，获得 16 位编号。</p>
+      <span class="choice-cta">开始一测 →</span>
+      <span class="choice-note" data-resume hidden>有未完成的进度，点击继续</span>
+    </a>
+
+    <a class="choice" href="./test2.html">
+      <span class="choice-tag">已完成一测</span>
+      <h2>二测</h2>
+      <p id="test2-desc">输入一测结束时拿到的 16 位编号，完成第二阶段问卷。</p>
+      <span class="choice-cta">进入二测 →</span>
+    </a>
+  </div>
+
+  <p class="hint center" id="contact"></p>
+</main>
+
+<footer class="footer">本页面仅用于学术研究，所有数据仅用于整体统计分析。</footer>
+
+<script src="./assets/js/file-check.js"></script>
+<script type="module">
+import { CONFIG } from './assets/js/config.js';
+
+document.getElementById('title').textContent = CONFIG.studyTitle;
+document.getElementById('intro').textContent = CONFIG.studyIntro;
+document.getElementById('contact').textContent = CONFIG.contact || '';
+document.title = CONFIG.studyTitle;
+
+const delayDays = Number(CONFIG.flow.test2DelayDays) || 0;
+if (delayDays > 0) {
+  document.getElementById('test2-fact').textContent =
+    `一测完成 ${delayDays} 天后，凭编号进入 → 完成后续问卷`;
+  document.getElementById('test2-desc').textContent =
+    `输入一测结束时拿到的 16 位编号（一测完成 ${delayDays} 天后可进入），完成第二阶段问卷。`;
+}
+
+try {
+  const saved = JSON.parse(localStorage.getItem('qs.progress.test1') || 'null');
+  if (saved && saved.step && saved.step !== 'intro' && saved.step !== 'code' && saved.step !== 'done') {
+    document.querySelectorAll('[data-resume]').forEach(el => { el.hidden = false; });
+  }
+} catch (_) { /* 本地存储不可用时忽略 */ }
+</script>
+</body>
+</html>
